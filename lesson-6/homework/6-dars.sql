@@ -12,7 +12,7 @@ INSERT INTO InputTbl (col1, col2) VALUES
 
 
 select distinct col1, col2 from InputTbl                           --Step 1
-where col1 not in ('b','n') and col2 not in ('a','m')
+
 
 
 select * from InputTbl
@@ -32,8 +32,10 @@ INSERT INTO TestMultipleZero(A,B,C,D) VALUES
 (0,0,0,0), 
 (1,1,1,0);
 
-Delete TestMultipleZero
-where A=0 and B=0 and C=0 and D=0
+SELECT *
+FROM TestMultipleZero
+WHERE A <> 0 OR B <> 0 OR C <> 0 OR D <> 0;
+
 
 select * from TestMultipleZero
 
@@ -51,21 +53,27 @@ insert into section1 values
 (7, 'Fred'), 
 (8, 'Andro');
 
-select * from section1                              --Step 3
-where id in (1,3,5,7)
 
-select * from section1  
+
+select * from section1                    --step 3
 where iif(id % 2=1,1,0)=1 
 
 
 SELECT *                                                --Step 4
 FROM section1 
 WHERE id = (SELECT MIN(id) FROM section1);
-                           
+   
+SELECT top 1  id,name                                         --Step 4
+FROM section1   
+order by id asc
+
 SELECT *                                                 --Step 5
 FROM section1 
 WHERE id = (SELECT Max(id) FROM section1);
 
+SELECT top 1  id,name                                         --Step 4
+FROM section1   
+order by id desc
 
 
 SELECT *                                                 --Step 6
@@ -90,4 +98,4 @@ select * from ProductCodes
 
 
 select * from ProductCodes                                --Step 7
-where Code like '%/_%' escape '/';
+where Code like '%X_%' escape 'X';
