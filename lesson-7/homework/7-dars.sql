@@ -309,7 +309,8 @@ Having  Count(EmployeeID)> 5
 
 --Medium-Level 
 
-Select sum(SaleAmount), AVg(SaleAmount) from Sales              --Step 11
+Select ProductID,sum(SaleAmount), AVg(SaleAmount) from Sales              --Step 11
+group by ProductID
 
 
 Select count(DepartmentName) from Employees                        --Step 12
@@ -341,7 +342,8 @@ select year(SaleDate),sum(SaleAmount) from Sales                --Step 17
 group by year(SaleDate)
 
 
-SELECT CustomerID, COUNT(OrderID) AS order_count                 --Step 18
+
+SELECT CustomerID, COUNT(OrderID)                 --Step 18
 FROM Orders
 GROUP BY CustomerID
 HAVING COUNT(OrderID) >= 3;
@@ -353,10 +355,9 @@ HAVING Sum(Salary)>500000
 
 
 -- Hard-Level
-
-SELECT Category, AVG(Price) FROM  Products                           --Step 20
-GROUP BY  Category
-HAVING  AVG(Price) > 200;
+SELECT ProductID, AVG(SaleAmount) FROM  Sales                          --Step 20
+GROUP BY  ProductID
+HAVING  AVG(SaleAmount) > 200;
 
 SELECT CustomerID,SUM(SaleAmount) FROM Sales                                 --Step 21
 GROUP BY CustomerID
